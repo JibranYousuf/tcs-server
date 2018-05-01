@@ -23,43 +23,31 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-var blog_1 = require("../models/blog");
+var citizen_1 = require("../models/citizen");
 var base_1 = require("./base");
-var blogCtrl = /** @class */ (function (_super) {
-    __extends(blogCtrl, _super);
+var citizenCtrl = /** @class */ (function (_super) {
+    __extends(citizenCtrl, _super);
 
-    function blogCtrl() {
+    function citizenCtrl() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.model = blog_1.default;
-
-        _this.getAllShallow = function (req, res) {
-            _this.model.find({
-                isPublished: false
-            }, {
-                content: 0
-            }, function (err, docs) {
+        _this.model = citizen_1.default;
+        this.getAll = function (req, res) {
+            _this.model.find({}).
+            populate({
+                path: 'challans',
+                model: 'challan'
+            }).
+            exec(function (err, docs) {
                 if (err) {
                     return console.error(err);
                 }
                 res.status(200).json(docs);
             });
         };
-        _this.getAll = function (req, res) {
-            _this.model.find({
-                isPublished: true
-            }, {
-                syllabus: 0,
-                content: 0
-            }, function (err, docs) {
-                if (err) {
-                    return console.error(err);
-                }
-                res.status(200).json(docs);
-            });
-        };
+    
         return _this;
     }
-    return blogCtrl;
+    return citizenCtrl;
 }(base_1.default));
-exports.default = blogCtrl;
-//# sourceMappingURL=blog.js.map
+exports.default = citizenCtrl;
+//# sourceMappingURL=citizen.js.map

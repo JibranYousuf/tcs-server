@@ -52,6 +52,7 @@ var UserCtrl = /** @class */ (function (_super) {
                 });
             });
         };
+        
         return _this;
     }
     return UserCtrl;

@@ -1,43 +1,30 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
-var course_1 = require("./controllers/course");
+var challan_1 = require("./controllers/challan");
 var user_1 = require("./controllers/user");
-var blog_1 = require("./controllers/blog");
+var citizen_1 = require("./controllers/citizen");
 var middlewares_1 = require("./middlewares");
 
 var path = require('path');
-var multer = require('multer');
-var storage = multer.diskStorage({
-    destination: './public/uploads/title/',
-    filename: function (req, file, cb) {
-        cb(null, req.params.courseId + path.extname(file.originalname));
-    }
-});
+
 function setRoutes(app) {
-    var upload = multer({ storage: storage });
     var router = express.Router();
-    var courseCtrl = new course_1.default();
+    var challanCtrl = new challan_1.default();
     var userCtrl = new user_1.default();
-    var blogCtrl = new blog_1.default();
+    var citizenCtrl = new citizen_1.default();
     var middleWare = new middlewares_1.default();
     router.route('/user/:id').put(middleWare.hash);
 
 
-    // courses
-    router.route('/courses').get(courseCtrl.getAll);
-    router.route('/courses/count').get(courseCtrl.count);
-    router.route('/course/syllabus/:id').get(courseCtrl.getSyllabus);
-    router.route('/course/content/:id').get(courseCtrl.getContent);
-    router.route('/course').post(courseCtrl.insert);
-    router.route('/courses/shallow').get(courseCtrl.getAllShallow);
-    router.route('/course/:id').get(courseCtrl.get);
-    router.route('/course/:id').put(courseCtrl.update);
-    router.route('/course/addUser/:id').put(courseCtrl.addUser);
-    router.route('/course/:id').delete(courseCtrl.delete);
-    router.route('/course/payment').post(courseCtrl.payment);
-    // router.route('/course/coupon').post(courseCtrl.verifyCoupon);
-    router.route('/course/getUsers/:id').get(courseCtrl.getUsers);
+    // challans
+    router.route('/challans').get(challanCtrl.getAll);
+    router.route('/challans/count').get(challanCtrl.count);
+    router.route('/challan').post(challanCtrl.insert);
+    router.route('/challan/:id').get(challanCtrl.get);
+    router.route('/challan/:id').put(challanCtrl.update);
+    router.route('/challan/insert/:id').post(challanCtrl.insert);
+    router.route('/challan/:id').delete(challanCtrl.delete);
 
 
     // Users
@@ -50,31 +37,30 @@ function setRoutes(app) {
     router.route('/user/:id').put(userCtrl.update);
     router.route('/user/:id').delete(userCtrl.delete);
 
-    /* blogs */
+    /* citizens */
 
     // get (all)
-    router.route('/blogs').get(blogCtrl.getAll);
+    router.route('/citizens').get(citizenCtrl.getAll);
 
     //count
-    router.route('/blogs/count').get(blogCtrl.count);
+    router.route('/citizens/count').get(citizenCtrl.count);
 
-    router.route('/blogs/shallow').get(blogCtrl.getAllShallow);
 
     // insert
-    router.route('/blog').post(blogCtrl.insert);
+    router.route('/citizen').post(citizenCtrl.insert);
 
     // get one
-    router.route('/blog/:id').get(blogCtrl.get);
+    router.route('/citizen/:id').get(citizenCtrl.get);
 
     // edit
-    router.route('/blog/:id').put(blogCtrl.update);
+    router.route('/citizen/:id').put(citizenCtrl.update);
 
     // delete
-    router.route('/blog/:id').delete(blogCtrl.delete);
+    router.route('/citizen/:id').delete(citizenCtrl.delete);
 
     
 
-    // Apply the routes to our applicourseion with the prefix /api
+    // Apply the routes to our applichallanion with the prefix /api
     app.use('/api', router);
 }
 exports.default = setRoutes;

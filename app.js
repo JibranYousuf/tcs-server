@@ -34,14 +34,8 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json());
-var mongodbURI = 'mongodb://admin:valleyforge@ds247587.mlab.com:47587/trainer-app';
-// let mongodbURI;
-// if (process.env.NODE_ENV === 'test') {
-//   mongodbURI = process.env.MONGODB_TEST_URI;
-// } else {
-//   mongodbURI = process.env.MONGODB_URI;
-//   app.use(morgan('dev'));
-// }
+let mongodbURI = process.env.MONGODB_URI;
+
 mongoose.Promise = global.Promise;
 var mongodb = mongoose.connect(mongodbURI, {
     useMongoClient: true
@@ -55,11 +49,10 @@ mongodb
         });
         if (!module.parent) {
             app.listen(app.get('port'), function () {
-                console.log('Fenago training-app server listening on port ' + app.get('port'));
+                console.log('TCS server listening on port ' + app.get('port'));
             });
         }
     })
     .catch(function (err) {
         console.error(err);
     });
-//# sourceMappingURL=app.js.map
