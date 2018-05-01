@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json());
-let mongodbURI = process.env.MONGODB_URI;
+let mongodbURI = process.env.MLAB_URI;
 
 mongoose.Promise = global.Promise;
 var mongodb = mongoose.connect(mongodbURI, {
