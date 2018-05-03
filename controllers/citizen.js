@@ -32,7 +32,7 @@ var citizenCtrl = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.model = citizen_1.default;
         this.get = function (req, res) {
-            _this.model.find({ cnic: req.params.id }).
+            _this.model.findOne({ cnic: req.params.id }).
             populate({
                 path: 'challans',
                 model: 'challan'

@@ -48,7 +48,7 @@ var challanCtrl = /** @class */ (function (_super) {
                         return console.error(err);
                     }
                     _this.citizenModel.update({
-                        _id: req.params.id
+                            cnic: req.params.id
                     }, {
                         $push: {
                             challans: item._id
