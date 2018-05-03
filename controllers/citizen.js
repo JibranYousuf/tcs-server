@@ -31,8 +31,8 @@ var citizenCtrl = /** @class */ (function (_super) {
     function citizenCtrl() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.model = citizen_1.default;
-        this.getAll = function (req, res) {
-            _this.model.find({}).
+        this.get = function (req, res) {
+            _this.model.find({ _id: req.params.id }).
             populate({
                 path: 'challans',
                 model: 'challan'
