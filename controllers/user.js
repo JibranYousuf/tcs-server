@@ -34,7 +34,7 @@ var UserCtrl = /** @class */ (function (_super) {
         _this.model = user_1.default;
         _this.login = function (req, res) {
             _this.model.findOne({
-                email: req.body.email
+                cnic: req.body.cnic
             }, function (err, user) {
                 if (!user) {
                     return res.sendStatus(403);
