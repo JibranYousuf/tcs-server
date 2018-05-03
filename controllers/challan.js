@@ -59,11 +59,8 @@ var challanCtrl = /** @class */ (function (_super) {
                         }
                         res.sendStatus(200);
                     });
-
                 });
         }
-        
-
         return _this;
     }
     return challanCtrl;

@@ -29,7 +29,6 @@ function setRoutes(app) {
 
     // Users
     router.route('/login').post(userCtrl.login);
-    router.route('/login').post();
     router.route('/users').get(userCtrl.getAll);
     router.route('/users/count').get(userCtrl.count);
     router.route('/user').post(userCtrl.insert);
@@ -44,7 +43,6 @@ function setRoutes(app) {
 
     //count
     router.route('/citizens/count').get(citizenCtrl.count);
-
 
     // insert
     router.route('/citizen').post(citizenCtrl.insert);

@@ -47,7 +47,14 @@ var UserCtrl = /** @class */ (function (_super) {
                         user: user
                     }, process.env.SECRET_TOKEN); // , { expiresIn: 10 } seconds
                     res.status(200).json({
-                        token: token
+                        token: token,
+                        user: {
+                            id: user._id,
+                            name: user.name,
+                            username: user.username,
+                            email : user.email,
+                            userType : user.userType,
+                        }
                     });
                 });
             });
