@@ -35,28 +35,15 @@ function setRoutes(app) {
     router.route('/user/:id').get(userCtrl.get);
     router.route('/user/:id').put(userCtrl.update);
     router.route('/user/:id').delete(userCtrl.delete);
+    
 
     /* citizens */
-
-    // get (all)
     router.route('/citizens').get(citizenCtrl.getAll);
-
-    //count
     router.route('/citizens/count').get(citizenCtrl.count);
-
-    // insert
     router.route('/citizen').post(citizenCtrl.insert);
-
-    // get one
     router.route('/citizen/:id').get(citizenCtrl.get);
-
-    // edit
     router.route('/citizen/:id').put(citizenCtrl.update);
-
-    // delete
     router.route('/citizen/:id').delete(citizenCtrl.delete);
-
-    
 
     // Apply the routes to our applichallanion with the prefix /api
     app.use('/api', router);
