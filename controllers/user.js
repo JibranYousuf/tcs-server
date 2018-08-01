@@ -46,6 +46,7 @@ var UserCtrl = /** @class */ (function (_super) {
                             user: user
                         }, process.env.SECRET_TOKEN); // , { expiresIn: 10 } seconds
                         res.status(200).json({
+                            success: true,
                             token: token,
                             user: {
                                 id: user._id,
