@@ -40,10 +40,8 @@ var UserCtrl = /** @class */ (function (_super) {
                     return res.json({success: false, msg: 'User Not Found'});
                 }
                 user.comparePassword(req.body.password, function (error, isMatch) {
-                    if (!isMatch) {
-                        return res.json({success: false, msg: 'Wrong Password'});
-                    }
-                    if(isMatch){
+                    if(err) throw err;
+                    if (isMatch) {
                         var token = jwt.sign({
                             user: user
                         }, process.env.SECRET_TOKEN); // , { expiresIn: 10 } seconds
@@ -57,6 +55,9 @@ var UserCtrl = /** @class */ (function (_super) {
                                 userType : user.userType,
                             }
                         });
+                    }
+                    else {
+                        return res.json({success: false, msg: 'wrong password'});
                     }
                 });
             });
