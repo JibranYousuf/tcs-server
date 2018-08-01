@@ -37,11 +37,11 @@ var UserCtrl = /** @class */ (function (_super) {
                 cnic: req.body.cnic
             }, function (err, user) {
                 if (!user) {
-                    return res.sendStatus(403);
+                    return res.json({success: false, msg: 'User Not Found'});
                 }
                 user.comparePassword(req.body.password, function (error, isMatch) {
                     if (!isMatch) {
-                        return res.sendStatus(403);
+                        return res.json({success: false, msg: 'Wrong Password'});
                     }
                     var token = jwt.sign({
                         user: user
