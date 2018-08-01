@@ -41,7 +41,7 @@ var UserCtrl = /** @class */ (function (_super) {
                 }
                 user.comparePassword(req.body.password, function (error, isMatch) {
                     if (!isMatch) {
-                        return res.sendStatus(403);
+                        return res.json({success: false, msg: 'wrong password'});
                     }
                     var token = jwt.sign({
                         user: user
@@ -56,8 +56,9 @@ var UserCtrl = /** @class */ (function (_super) {
                             userType : user.userType,
                         }
                     });
-                });
+                });                
             });
+            
         };
         return _this;
     }
