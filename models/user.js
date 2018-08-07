@@ -7,27 +7,27 @@ var mongoose = require("mongoose");
 var userSchema = new mongoose.Schema({
     name: {
         type: String
-      },
-      email: {
+    },
+    email: {
         type: String,
         unique: true
-      },
-      username: {
+    },
+    username: {
         type: String,
         unique: true
-      },
-      cnic: {
-          type: String,
-          unique: true
-      },
-      password: {
-      },
-      contact:{
+    },
+    cnic: {
         type: String,
-      },
-      designation:{
+        unique: true
+    },
+    password: {
+    },
+    contact: {
         type: String,
-      },
+    },
+    designation: {
+        type: String,
+    },
 });
 // Before saving the user, hash the password
 userSchema.pre('save', function (next) {

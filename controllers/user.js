@@ -37,7 +37,11 @@ var UserCtrl = /** @class */ (function (_super) {
                 cnic: req.body.cnic
             }, function (err, user) {
                 if (!user) {
-                    return res.json({success: false, msg: 'User Not Found'});
+                    return res.json({
+                        success: false, 
+                        msg: 'User Not Found',
+                    },
+                    res.status(404));
                 }
                 user.comparePassword(req.body.password, function (error, isMatch) {
                     if(err) throw err;
@@ -58,7 +62,11 @@ var UserCtrl = /** @class */ (function (_super) {
                         });
                     }
                     else {
-                        return res.json({success: false, msg: 'wrong password'});
+                        return res.json({
+                            success: false, 
+                            msg: 'wrong password'
+                        },
+                        res.status(401));
                     }
                 });
             });
