@@ -20,15 +20,17 @@ app.use('/',function(req, res, next) {
     res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
     res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers,Authorization, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
     if ('OPTIONS' == req.method) {
-        res.send(200);
+        res.sendStatus(200);
       }
       else {
         next();
       }
 });
 app.use('/', express.static(path.join(__dirname, '../public')));
-app.use(bodyParser({
-    limit: '50mb'
+app.use(bodyParser.urlencoded({
+    limit: '50mb',
+    extended: true
+
 }));
 app.use(bodyParser.urlencoded({
     extended: false
@@ -45,7 +47,7 @@ mongodb
         console.log('Connected to MongoDB on', db.host + ':' + db.port);
         routes_1.default(app);
         app.get('/*', function (req, res) {
-            res.send("TCS server is working")
+            res.sendStatus("TCS server is working")
         });
         if (!module.parent) {
             app.listen(app.get('port'), function () {

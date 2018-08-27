@@ -61,8 +61,23 @@ var challanCtrl = /** @class */ (function (_super) {
                     });
                 });
         }
-        return _this;
+        _this.confirmPay = function(req,res){
+            _this.model.update({
+                    _id: req.params.id
+            }, {
+                $set: {
+                    isPaid: true
+                },
+            }, function (err) {
+                if (err) {
+                    res.status(500).json("Something Went Wrong")
+                }
+                res.send(200);
+            });
     }
+    return _this;
+    }
+    
     return challanCtrl;
 }(base_1.default));
 exports.default = challanCtrl;

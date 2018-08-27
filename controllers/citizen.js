@@ -38,13 +38,14 @@ var citizenCtrl = /** @class */ (function (_super) {
                 model: 'challan'
             }).
             exec(function (err, docs) {
-                if (err) {
-                    return console.error(err);
+                if (!docs) {
+                    return res.status(500).json('Citizen Not Found');
                 }
-                res.status(200).json(docs);
+                else{
+                res.status(200).send(docs)
+            }
             });
-        };
-    
+        };    
         return _this;
     }
     return citizenCtrl;

@@ -10,8 +10,11 @@ var challanSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  challanDatePaid: Date,
-  isPaid: Boolean
+  challanDatePaid: String,
+  isPaid: {
+    type: Boolean,
+    default: false
+  }
 });
 var challan = mongoose.model('challan', challanSchema);
 exports.default = challan;
