@@ -42,9 +42,9 @@ var UserCtrl = /** @class */ (function (_super) {
                 user.comparePassword(req.body.password, function (error, isMatch) {
                     if(err) throw err;
                     if (isMatch) {
-                        var token = jwt.sign({
-                            user: user
-                        }, process.env.SECRET_TOKEN); // , { expiresIn: 10 } seconds
+                        var token = jwt.sign({user: user}, process.env.SECRET_TOKEN, {
+                            expiresIn: 604800  //1 week
+                        }); 
                         res.status(200).json({
                             success: true,
                             token: token,
