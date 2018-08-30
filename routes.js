@@ -25,7 +25,8 @@ function setRoutes(app) {
     router.route('/challan/:id').put(challanCtrl.update);
     router.route('/challan/insert/:id').post(challanCtrl.insert);
     router.route('/challan/:id').delete(challanCtrl.delete);
-    router.route('/challans/confirmPay/:id').put(challanCtrl.confirmPay);
+    router.route('/challans/confirmpay/:id').put(challanCtrl.confirmPay);
+    router.route('/challans/processpay').post(challanCtrl.procssPay)
 
     // Users
     router.route('/login').post(userCtrl.login);

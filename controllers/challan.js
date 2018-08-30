@@ -75,6 +75,22 @@ var challanCtrl = /** @class */ (function (_super) {
                 res.send(200);
             });
     }
+    _this.processPay = function (req, res) {
+        var stripetoken = req.body.stripetoken;
+        var amountpayable = req.body.amount;
+        var charge = stripe.charge.create({
+            amount: amountpayable,
+            currency: 'USD',
+            description: 'Sample Transaction',
+            sourse: stripetoken
+        }, function (err, charge){
+            if(err)
+            console.log(err);
+            else
+            res.status(200).send();
+        }
+     )
+     };
     return _this;
     }
     

@@ -7,8 +7,10 @@ var dotenv = require("dotenv");
 var express = require("express");
 var mongoose = require("mongoose");
 var path = require("path");
+var stripe = require("stripe")('sk_test');
 var routes_1 = require("./routes");
 var app = express();
+
 exports.app = app;
 dotenv.load({
     path: '.env'
