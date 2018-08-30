@@ -2,8 +2,8 @@
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({
-            __proto__: []
-        }
+                __proto__: []
+            }
             instanceof Array && function (d, b) {
                 d.__proto__ = b;
             }) ||
@@ -36,20 +36,20 @@ var challanCtrl = /** @class */ (function (_super) {
         _this.model = challan_1.default;
         _this.citizenModel = citizen_1.default;
 
-
-        _this.insert = function (req, res) {
+        
+        _this.insert = function(req,res){
             var obj = new _this.model(req.body);
-            obj.save(function (err, item) {
-                // 11000 is the code for duplicate key error
-                if (err && err.code === 11000) {
-                    res.sendStatus(400);
-                }
-                if (err) {
-                    return console.error(err);
-                }
-                _this.citizenModel.update({
-                    cnic: req.params.id
-                }, {
+                obj.save(function (err, item) {
+                    // 11000 is the code for duplicate key error
+                    if (err && err.code === 11000) {
+                        res.sendStatus(400);
+                    }
+                    if (err) {
+                        return console.error(err);
+                    }
+                    _this.citizenModel.update({
+                            cnic: req.params.id
+                    }, {
                         $push: {
                             challans: item._id
                         }
@@ -59,44 +59,41 @@ var challanCtrl = /** @class */ (function (_super) {
                         }
                         res.sendStatus(200);
                     });
-            });
-        }
-        _this.confirmPay = function (req, res) {
-            _this.model.update({
-                _id: req.params.id
-            }, {
-                    $set: {
-                        isPaid: true
-                    },
-                }, function (err) {
-                    if (err) {
-                        res.status(500).json("Something Went Wrong")
-                    }
-                    res.send(200);
                 });
         }
-        _this.processPay = function (req, res) {
-
-            var stripe = require("stripe")("sk_test_kXLKkg9RIbAMuiDklNvE3FXb");
-
-            stripe.charges.create({
-                amount: 2000,
-                currency: "usd",
-                source: "tok_visa", // obtained with Stripe.js
-                description: "Charge for tcs@example.com"
+        _this.confirmPay = function(req,res){
+            _this.model.update({
+                    _id: req.params.id
             }, {
-                    idempotency_key: "ppZzFRXA97i2aVKP"
-                }, function (err, charge) {
-                    if (err)
-                        console.log(err);
-                    else
-                        res.send({ success: true });
+                $set: {
+                    isPaid: true
+                },
+            }, function (err) {
+                if (err) {
+                    res.status(500).json("Something Went Wrong")
                 }
-            )
-        };
-        return _this;
+                res.send(200);
+            });
     }
-
+    _this.processPay = function (req, res) {
+        var stripe = require("stripe")('sk_test_kXLKkg9RIbAMuiDklNvE3FXb');
+        var amountpayable = req.body.amount;
+        var charge = stripe.charges.create({
+            amount: amountpayable,
+            currency: 'USD',
+            description: 'Sample Transaction',
+            source: "tok_visa"
+        }, function (err, charge){
+            if(err)
+            console.log(err);
+            else
+            res.send({success: true});
+        }
+     )
+     };
+    return _this;
+    }
+    
     return challanCtrl;
 }(base_1.default));
 exports.default = challanCtrl;
