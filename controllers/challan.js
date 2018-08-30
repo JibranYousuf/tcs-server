@@ -88,7 +88,7 @@ var challanCtrl = /** @class */ (function (_super) {
             if(err)
             console.log(err);
             else
-            res.status(200).send(charge);
+            res.status(200).json({success: true});
         }
      )
      };

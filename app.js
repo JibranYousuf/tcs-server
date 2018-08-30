@@ -48,7 +48,7 @@ mongodb
         console.log('Connected to MongoDB on', db.host + ':' + db.port);
         routes_1.default(app);
         app.get('/*', function (req, res) {
-            res.sendStatus("TCS server is working")
+            res.status(200).json("TCS server is working")
         });
         if (!module.parent) {
             app.listen(app.get('port'), function () {
