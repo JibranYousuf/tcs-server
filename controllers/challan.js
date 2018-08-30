@@ -26,7 +26,7 @@ Object.defineProperty(exports, "__esModule", {
 var base_1 = require("./base");
 var challan_1 = require("../models/challan");
 var citizen_1 = require("../models/citizen");
-var stripe = require("stripe")('sk_test');
+var stripe = require("stripe")('sk_test_kXLKkg9RIbAMuiDklNvE3FXb');
 
 var challanCtrl = /** @class */ (function (_super) {
     __extends(challanCtrl, _super);
@@ -83,12 +83,12 @@ var challanCtrl = /** @class */ (function (_super) {
             amount: amountpayable,
             currency: 'USD',
             description: 'Sample Transaction',
-            sourse: stripetoken
+            source: stripetoken
         }, function (err, charge){
             if(err)
             console.log(err);
             else
-            res.status(200).json({success: true});
+            res.send({success: true});
         }
      )
      };
