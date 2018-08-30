@@ -20,7 +20,7 @@ function setRoutes(app) {
     // challans
     router.route('/challans').get(challanCtrl.getAll);
     router.route('/challans/count').get(challanCtrl.count);
-    // router.route('/challans/processpay').post(challanCtrl.procssPay);
+    router.route('/challans/processpay').post(challanCtrl.processPay);
     router.route('/challan').post(challanCtrl.insert);
     router.route('/challan/:id').get(challanCtrl.get);
     router.route('/challan/:id').put(challanCtrl.update);

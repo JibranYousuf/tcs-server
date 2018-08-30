@@ -26,7 +26,7 @@ Object.defineProperty(exports, "__esModule", {
 var base_1 = require("./base");
 var challan_1 = require("../models/challan");
 var citizen_1 = require("../models/citizen");
-// var stripe = require("stripe")('sk_test');
+var stripe = require("stripe")('sk_test');
 
 var challanCtrl = /** @class */ (function (_super) {
     __extends(challanCtrl, _super);
@@ -76,22 +76,22 @@ var challanCtrl = /** @class */ (function (_super) {
                 res.send(200);
             });
     }
-    // _this.processPay = function (req, res) {
-    //     var stripetoken = req.body.stripetoken;
-    //     var amountpayable = req.body.amount;
-    //     var charge = stripe.charge.create({
-    //         amount: amountpayable,
-    //         currency: 'USD',
-    //         description: 'Sample Transaction',
-    //         sourse: stripetoken
-    //     }, function (err, charge){
-    //         if(err)
-    //         console.log(err);
-    //         else
-    //         res.status(200).send(charge);
-    //     }
-    //  )
-    //  };
+    _this.processPay = function (req, res) {
+        var stripetoken = req.body.stripetoken;
+        var amountpayable = req.body.amount;
+        var charge = stripe.charge.create({
+            amount: amountpayable,
+            currency: 'USD',
+            description: 'Sample Transaction',
+            sourse: stripetoken
+        }, function (err, charge){
+            if(err)
+            console.log(err);
+            else
+            res.status(200).send(charge);
+        }
+     )
+     };
     return _this;
     }
     
