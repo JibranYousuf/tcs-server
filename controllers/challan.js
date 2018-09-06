@@ -72,17 +72,18 @@ var challanCtrl = /** @class */ (function (_super) {
                 if (err) {
                     res.status(500).json("Something Went Wrong")
                 }
-                res.send(200);
+                res.sendStatus(200);
             });
     }
     _this.processPay = function (req, res) {
         var stripe = require("stripe")('sk_test_kXLKkg9RIbAMuiDklNvE3FXb');
+        var stripeToken = req.body.stripeToken;
         var amountpayable = req.body.amount;
         var charge = stripe.charges.create({
             amount: amountpayable,
             currency: 'USD',
             description: 'Sample Transaction',
-            source: "tok_visa"
+            source: stripeToken
         }, function (err, charge){
             if(err)
             console.log(err);

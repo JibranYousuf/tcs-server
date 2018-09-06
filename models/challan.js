@@ -4,13 +4,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 var mongoose = require("mongoose");
 var challanSchema = new mongoose.Schema({
-  challanNo: String,
   challanType: String,
   challanDateCreated: {
     type: Date,
     default: Date.now
   },
-  challanDatePaid: String,
+  challanDatePaid: Date,
+  amount: Number,
   isPaid: {
     type: Boolean,
     default: false
