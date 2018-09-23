@@ -77,13 +77,13 @@ var challanCtrl = /** @class */ (function (_super) {
         }
         _this.processPay = function (req, res) {
             var stripe = require("stripe")('sk_test_kXLKkg9RIbAMuiDklNvE3FXb');
-            const token = req.body.stripeToken.id;
+            const token = req.body.stripeToken;
             var amountpayable = req.body.amount;
             const charge = stripe.charges.create({
                 amount: amountpayable,
                 currency: 'USD',
                 description: 'Sample Transaction',
-                source: token
+                source: token.id
             }, function (err, charge) {
                 if (err)
                     console.log(err);
