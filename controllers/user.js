@@ -57,6 +57,7 @@ var UserCtrl = /** @class */ (function (_super) {
                                 college_university: user.college_university,
                                 profession: user.profession,
                                 email: user.email,
+                                userType: user.userType,
                                 contact_num: user.contact_num,
                                 password: user.password
                             }
