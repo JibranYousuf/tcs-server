@@ -5,33 +5,36 @@ Object.defineProperty(exports, "__esModule", {
 var bcrypt = require("bcryptjs");
 var mongoose = require("mongoose");
 var userSchema = new mongoose.Schema({
-    first_name: {
-        type: String
-      },
-      last_name: {
-        type: String,
-      },
-      gender: {
-        type: String,
-      },
-      dob: {
-        type: String,
-      },
-      college_university: {
-        type: String,
-      },
-      profession: {
-        type: String,
-      },
-      email: {
-        type: String,
-      },
-      contact_num: {
-        type: String,
-      },
-      password: {
-        type: String,
-      },
+  first_name: {
+    type: String
+  },
+  last_name: {
+    type: String,
+  },
+  gender: {
+    type: String,
+  },
+  dob: {
+    type: String,
+  },
+  college_university: {
+    type: String,
+  },
+  profession: {
+    type: String,
+  },
+  email: {
+    type: String,
+  },
+  contact_num: {
+    type: String,
+  },
+  userType: {
+    type: String,
+  },
+  password: {
+    type: String,
+  },
 });
 // Before saving the user, hash the password
 userSchema.pre('save', function (next) {
@@ -52,19 +55,6 @@ userSchema.pre('save', function (next) {
         });
     });
 });
-
-userSchema.methods.addUser = function(newUser, callback){
-  console.log(newUser)
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(newUser.password, salt, (err, hash) => {
-      if(err) throw err;
-      newUser.password = hash;
-      next();
-    });
-  });
-}
-
-
 userSchema.methods.comparePassword = function (candidatePassword, callback) {
     console.log(candidatePassword + '-----' + this.password);
     bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
@@ -83,6 +73,5 @@ userSchema.set('toJSON', {
     }
 });
 var User = mongoose.model('User', userSchema);
-module.exports = User;
-
+exports.default = User;
 //# sourceMappingURL=user.js.map
