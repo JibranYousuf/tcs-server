@@ -52,6 +52,19 @@ userSchema.pre('save', function (next) {
         });
     });
 });
+
+userSchema.methods.addUser = function(newUser, callback){
+  console.log(newUser)
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
+      if(err) throw err;
+      newUser.password = hash;
+      next();
+    });
+  });
+}
+
+
 userSchema.methods.comparePassword = function (candidatePassword, callback) {
     console.log(candidatePassword + '-----' + this.password);
     bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
@@ -70,5 +83,6 @@ userSchema.set('toJSON', {
     }
 });
 var User = mongoose.model('User', userSchema);
-exports.default = User;
+module.exports = User;
+
 //# sourceMappingURL=user.js.map

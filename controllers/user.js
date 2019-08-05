@@ -82,26 +82,19 @@ var UserCtrl = /** @class */ (function (_super) {
                 contact_num: req.body.contact_num,
                 password: req.body.password
             });
-            user.addUser(newUser, (err, user) => {
-                if (err) {
-                    return res.status(500).json('wrong password');
-                }
-                else {
-                    res.status(200).json({
-                        user: {
-                            id: user._id,
-                            first_name: user.first_name,
-                            last_name: user.last_name,
-                            gender: user.gender,
-                            dob: user.dob,
-                            college_university: user.college_university,
-                            profession: user.profession,
-                            email: user.email,
-                            contact_num: user.contact_num,
-                            password: user.password
+        user.addUser(newUser, (err, user)=>{
+                if(err){
+                        res.status(400).json(
+                            {
+                            success: false, msg: 'failed to register user'
+                            });
                         }
-                    });
-                }
+                else{
+                    res.status(200).json(
+                        {
+                            success: true, msg: 'User Registered'
+                        });
+                    }
             });
         };
         return _this;
