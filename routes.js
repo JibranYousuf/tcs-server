@@ -36,8 +36,8 @@ function setRoutes(app) {
     router.route('/user/:id').get(userCtrl.get);
     router.route('/user/:id').put(userCtrl.update);
     router.route('/user/:id').delete(userCtrl.delete);
+    router.route('/register').post(userCtrl.register)
     
-
     /* citizens */
     router.route('/citizens').get(citizenCtrl.getAll);
     router.route('/citizens/count').get(citizenCtrl.count);

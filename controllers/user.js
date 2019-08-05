@@ -2,8 +2,8 @@
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({
-                __proto__: []
-            }
+            __proto__: []
+        }
             instanceof Array && function (d, b) {
                 d.__proto__ = b;
             }) ||
@@ -34,26 +34,31 @@ var UserCtrl = /** @class */ (function (_super) {
         _this.model = user_1.default;
         _this.login = function (req, res) {
             _this.model.findOne({
-                cnic: req.body.cnic
+                email: req.body.email
             }, function (err, user) {
                 if (!user) {
                     return res.status(500).json('User Not Found');
                 }
                 user.comparePassword(req.body.password, function (error, isMatch) {
-                    if(err) throw err;
+                    if (err) throw err;
                     if (isMatch) {
-                        var token = jwt.sign({user: user}, process.env.SECRET_TOKEN, {
+                        var token = jwt.sign({ user: user }, process.env.SECRET_TOKEN, {
                             expiresIn: 604800  //1 week
-                        }); 
+                        });
                         res.status(200).json({
                             success: true,
                             token: token,
                             user: {
                                 id: user._id,
-                                name: user.name,
-                                username: user.username,
-                                email : user.email,
-                                userType : user.userType,
+                                first_name: user.first_name,
+                                last_name: user.last_name,
+                                gender: user.gender,
+                                dob: user.dob,
+                                college_university: user.college_university,
+                                profession: user.profession,
+                                email: user.email,
+                                contact_num: user.contact_num,
+                                password: user.password
                             }
                         });
                     }
@@ -61,6 +66,42 @@ var UserCtrl = /** @class */ (function (_super) {
                         return res.status(500).json('wrong password');
                     }
                 });
+            });
+        };
+
+
+        _this.register = function (req, res) {
+            let newUser = new User({
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                gender: req.body.gender,
+                dob: req.body.dob,
+                college_university: req.body.college_university,
+                profession: req.body.profession,
+                email: req.body.email,
+                contact_num: req.body.contact_num,
+                password: req.body.password
+            });
+            user.addUser(newUser, (err, user) => {
+                if (err) {
+                    return res.status(500).json('wrong password');
+                }
+                else {
+                    res.status(200).json({
+                        user: {
+                            id: user._id,
+                            first_name: user.first_name,
+                            last_name: user.last_name,
+                            gender: user.gender,
+                            dob: user.dob,
+                            college_university: user.college_university,
+                            profession: user.profession,
+                            email: user.email,
+                            contact_num: user.contact_num,
+                            password: user.password
+                        }
+                    });
+                }
             });
         };
         return _this;
