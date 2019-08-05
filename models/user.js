@@ -5,29 +5,33 @@ Object.defineProperty(exports, "__esModule", {
 var bcrypt = require("bcryptjs");
 var mongoose = require("mongoose");
 var userSchema = new mongoose.Schema({
-    name: {
+    first_name: {
         type: String
-    },
-    email: {
+      },
+      last_name: {
         type: String,
-        unique: true
-    },
-    username: {
+      },
+      gender: {
         type: String,
-        unique: true
-    },
-    cnic: {
+      },
+      dob: {
         type: String,
-        unique: true
-    },
-    password: {
-    },
-    contact: {
+      },
+      college_university: {
         type: String,
-    },
-    designation: {
+      },
+      profession: {
         type: String,
-    },
+      },
+      email: {
+        type: String,
+      },
+      contact_num: {
+        type: String,
+      },
+      password: {
+        type: String,
+      },
 });
 // Before saving the user, hash the password
 userSchema.pre('save', function (next) {
