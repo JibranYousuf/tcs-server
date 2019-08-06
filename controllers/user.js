@@ -46,7 +46,7 @@ var UserCtrl = /** @class */ (function (_super) {
                             expiresIn: 604800  //1 week
                         });
                         res.status(200).json({
-                            success: "true",
+                            success: true,
                             token: token,
                             user: {
                                 id: user._id,
