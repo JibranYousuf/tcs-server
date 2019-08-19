@@ -9,6 +9,7 @@ var challanSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  event_type: String,
   event_duration: String,
   event_ground: String,
   event_address: String,

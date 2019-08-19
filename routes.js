@@ -18,15 +18,15 @@ function setRoutes(app) {
 
 
     // challans
-    router.route('/challans').get(challanCtrl.getAll);
-    router.route('/challans/count').get(challanCtrl.count);
-    router.route('/challans/processpay').post(challanCtrl.processPay);
-    router.route('/challan').post(challanCtrl.insert);
-    router.route('/challan/:id').get(challanCtrl.get);
-    router.route('/challan/:id').put(challanCtrl.update);
-    router.route('/challan/insert/:id').post(challanCtrl.insert);
-    router.route('/challan/:id').delete(challanCtrl.delete);
-    router.route('/challans/confirmpay/:id').put(challanCtrl.confirmPay);
+    router.route('/events').get(challanCtrl.getAll);
+    router.route('/events/count').get(challanCtrl.count);
+    router.route('/events/processpay').post(challanCtrl.processPay);
+    router.route('/event').post(challanCtrl.insert);
+    router.route('/event/:id').get(challanCtrl.get);
+    router.route('/event/:id').put(challanCtrl.update);
+    router.route('/event/insert/:id').post(challanCtrl.insert);
+    router.route('/event/:id').delete(challanCtrl.delete);
+    router.route('/events/confirmpay/:id').put(challanCtrl.confirmPay);
 
     // Users
     router.route('/login').post(userCtrl.login);
