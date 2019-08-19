@@ -4,17 +4,18 @@ Object.defineProperty(exports, "__esModule", {
 });
 var mongoose = require("mongoose");
 var challanSchema = new mongoose.Schema({
-  challanType: String,
-  challanDateCreated: {
+  event_name: String,
+  event_date_time: {
     type: Date,
     default: Date.now
   },
-  challanDatePaid: Date,
-  amount: Number,
-  isPaid: {
-    type: Boolean,
-    default: false
-  }
+  event_duration: String,
+  event_ground: String,
+  event_address: String,
+  event_activities: String,
+  notification: String,
+  alert : String,
+  alarm : String
 });
 var challan = mongoose.model('challan', challanSchema);
 exports.default = challan;
