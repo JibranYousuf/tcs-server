@@ -44,7 +44,7 @@ var citizenSchema = new mongoose.Schema({
   licenseNo: {
     type: String,
   },
-  challans: [{ type: Schema.Types.ObjectId, ref: 'challan' }]
+  events: [{ type: Schema.Types.ObjectId, ref: 'event' }]
 });
 var citizen = mongoose.model('citizen', citizenSchema);
 exports.default = citizen;

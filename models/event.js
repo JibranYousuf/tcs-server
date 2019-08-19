@@ -18,6 +18,6 @@ var challanSchema = new mongoose.Schema({
   alert : String,
   alarm : String
 });
-var challan = mongoose.model('challan', challanSchema);
-exports.default = challan;
+var event = mongoose.model('event', challanSchema);
+exports.default = event;
 //# sourceMappingURL=course.js.map

@@ -34,8 +34,8 @@ var citizenCtrl = /** @class */ (function (_super) {
         this.get = function (req, res) {
             _this.model.findOne({ cnic: req.params.id }).
             populate({
-                path: 'challans',
-                model: 'challan'
+                path: 'events',
+                model: 'event'
             }).
             exec(function (err, docs) {
                 if (!docs) {

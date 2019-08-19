@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
-var challan_1 = require("./controllers/challan");
+var event_1 = require("./controllers/event");
 var user_1 = require("./controllers/user");
 var citizen_1 = require("./controllers/citizen");
 var middlewares_1 = require("./middlewares");
@@ -10,23 +10,23 @@ var path = require('path');
 
 function setRoutes(app) {
     var router = express.Router();
-    var challanCtrl = new challan_1.default();
+    var eventCtrl = new event_1.default();
     var userCtrl = new user_1.default();
     var citizenCtrl = new citizen_1.default();
     var middleWare = new middlewares_1.default();
     router.route('/user/:id').put(middleWare.hash);
 
 
-    // challans
-    router.route('/events').get(challanCtrl.getAll);
-    router.route('/events/count').get(challanCtrl.count);
-    router.route('/events/processpay').post(challanCtrl.processPay);
-    router.route('/event').post(challanCtrl.insert);
-    router.route('/event/:id').get(challanCtrl.get);
-    router.route('/event/:id').put(challanCtrl.update);
-    router.route('/event/insert/:id').post(challanCtrl.insert);
-    router.route('/event/:id').delete(challanCtrl.delete);
-    router.route('/events/confirmpay/:id').put(challanCtrl.confirmPay);
+    // events
+    router.route('/events').get(eventCtrl.getAll);
+    router.route('/events/count').get(eventCtrl.count);
+    router.route('/events/processpay').post(eventCtrl.processPay);
+    router.route('/event').post(eventCtrl.insert);
+    router.route('/event/:id').get(eventCtrl.get);
+    router.route('/event/:id').put(eventCtrl.update);
+    router.route('/event/insert/:id').post(eventCtrl.insert);
+    router.route('/event/:id').delete(eventCtrl.delete);
+    router.route('/events/confirmpay/:id').put(eventCtrl.confirmPay);
 
     // Users
     router.route('/login').post(userCtrl.login);
