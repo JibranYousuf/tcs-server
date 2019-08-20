@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var bcrypt = require("bcryptjs");
 var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
 var userSchema = new mongoose.Schema({
   first_name: {
     type: String
@@ -34,6 +35,10 @@ var userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
+  },
+  events: [{ type: Schema.Types.ObjectId, ref: 'event' }],
+  uni_id: {
+    type: String
   },
 });
 // Before saving the user, hash the password

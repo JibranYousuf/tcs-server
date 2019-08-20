@@ -9,6 +9,7 @@ var challanSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  event_type: String,
   event_duration: String,
   event_ground: String,
   event_address: String,
@@ -17,6 +18,6 @@ var challanSchema = new mongoose.Schema({
   alert : String,
   alarm : String
 });
-var challan = mongoose.model('challan', challanSchema);
-exports.default = challan;
+var event = mongoose.model('event', challanSchema);
+exports.default = event;
 //# sourceMappingURL=course.js.map

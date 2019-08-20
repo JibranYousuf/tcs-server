@@ -25,16 +25,16 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var base_1 = require("./base");
-var challan_1 = require("../models/challan");
-var citizen_1 = require("../models/citizen");
-var challanCtrl = /** @class */ (function (_super) {
-    __extends(challanCtrl, _super);
+var event_1 = require("../models/event");
+var user_1 = require("../models/user");
+var eventCtrl = /** @class */ (function (_super) {
+    __extends(eventCtrl, _super);
 
-    function challanCtrl() {
+    function eventCtrl() {
 
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.model = challan_1.default;
-        _this.citizenModel = citizen_1.default;
+        _this.model = event_1.default;
+        _this.userModel = user_1.default;
 
 
         _this.insert = function (req, res) {
@@ -47,11 +47,11 @@ var challanCtrl = /** @class */ (function (_super) {
                 if (err) {
                     return console.error(err);
                 }
-                _this.citizenModel.update({
-                    cnic: req.params.id
+                _this.userModel.update({
+                    _id: req.params.id
                 }, {
                         $push: {
-                            challans: item._id
+                            events: item._id
                         }
                     }, function (err) {
                         if (err) {
@@ -95,7 +95,7 @@ var challanCtrl = /** @class */ (function (_super) {
         return _this;
     }
 
-    return challanCtrl;
+    return eventCtrl;
 }(base_1.default));
-exports.default = challanCtrl;
-//# sourceMappingURL=challan.js.map
+exports.default = eventCtrl;
+//# sourceMappingURL=event.js.map

@@ -30,6 +30,7 @@ var UserCtrl = /** @class */ (function (_super) {
     __extends(UserCtrl, _super);
 
     function UserCtrl() {
+
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.model = user_1.default;
         _this.login = function (req, res) {
@@ -59,7 +60,9 @@ var UserCtrl = /** @class */ (function (_super) {
                                 email: user.email,
                                 userType: user.userType,
                                 contact_num: user.contact_num,
-                                password: user.password
+                                password: user.password,
+                                event : user.event
+                                
                             }
                         });
                     }
@@ -70,6 +73,21 @@ var UserCtrl = /** @class */ (function (_super) {
             });
         };
 
+        _this.get = function (req, res) {
+            _this.model.findOne({ _id: req.params.id }).
+            populate({
+                path: 'events',
+                model: 'event'
+            }).
+            exec(function (err, docs) {
+                if (!docs) {
+                    return res.status(500).json('User Not Found');
+                }
+                else{
+                res.status(200).send(docs)
+            }
+            });
+        };    
 
         _this.register = function (req, res) {
             let newUser = new User({
