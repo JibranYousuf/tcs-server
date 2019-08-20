@@ -70,7 +70,7 @@ var eventCtrl = /** @class */ (function (_super) {
             }).
             exec(function (err, docs) {
                 if (!docs) {
-                    return res.status(500).json('Event Not Found');
+                    return res.status(404).json('Event Not Found');
                 }
                 else{
                 res.status(200).send(docs)
@@ -86,7 +86,7 @@ var eventCtrl = /** @class */ (function (_super) {
             }).
             exec(function (err, docs) {
                 if (!docs) {
-                    return res.status(500).json('Event Not Found');
+                    return res.status(404).json('Event Not Found');
                 }
                 else{
                 res.status(200).send(docs)
@@ -103,7 +103,7 @@ var eventCtrl = /** @class */ (function (_super) {
                     },
                 }, function (err) {
                     if (err) {
-                        res.status(500).json("Something Went Wrong")
+                        res.status(404).json("Something Went Wrong")
                     }
                     res.sendStatus(200);
                 });
