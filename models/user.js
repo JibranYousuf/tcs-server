@@ -37,9 +37,10 @@ var userSchema = new mongoose.Schema({
     type: String,
   },
   events: [{ type: Schema.Types.ObjectId, ref: 'event' }],
-  uni_id: {
-    type: String
-  },
+  hours: {
+    type: Number,
+    default: 20
+  }
 });
 // Before saving the user, hash the password
 userSchema.pre('save', function (next) {

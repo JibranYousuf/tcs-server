@@ -60,9 +60,7 @@ var UserCtrl = /** @class */ (function (_super) {
                                 email: user.email,
                                 userType: user.userType,
                                 contact_num: user.contact_num,
-                                password: user.password,
-                                event : user.event
-                                
+                                password: user.password,                                
                             }
                         });
                     }
