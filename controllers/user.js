@@ -52,19 +52,7 @@ var UserCtrl = /** @class */ (function (_super) {
                         res.status(200).json({
                             success: true,
                             token: token,
-                            user: {
-                                id: user._id,
-                                first_name: user.first_name,
-                                last_name: user.last_name,
-                                gender: user.gender,
-                                dob: user.dob,
-                                college_university: user.college_university,
-                                profession: user.profession,
-                                email: user.email,
-                                userType: user.userType,
-                                contact_num: user.contact_num,
-                                password: user.password,
-                            }
+                            user: user
                         });
                     }
                     else {
