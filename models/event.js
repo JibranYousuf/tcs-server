@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
 var challanSchema = new mongoose.Schema({
   event_name: String,
   event_date_time: {
@@ -16,7 +17,8 @@ var challanSchema = new mongoose.Schema({
   event_activities: String,
   notification: String,
   alert : String,
-  alarm : String
+  alarm : String,
+  activities: [{ type: Schema.Types.ObjectId, ref: 'activity' }],
 });
 var event = mongoose.model('event', challanSchema);
 exports.default = event;

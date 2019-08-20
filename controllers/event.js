@@ -61,6 +61,23 @@ var eventCtrl = /** @class */ (function (_super) {
                     });
             });
         }
+
+        _this.get = function (req, res) {
+            _this.model.findOne({ _id: req.params.id }).
+            populate({
+                path: 'activities',
+                model: 'activity'
+            }).
+            exec(function (err, docs) {
+                if (!docs) {
+                    return res.status(500).json('Event Not Found');
+                }
+                else{
+                res.status(200).send(docs)
+            }
+            });
+        };    
+
         _this.confirmPay = function (req, res) {
             _this.model.update({
                 _id: req.params.id

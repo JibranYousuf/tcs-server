@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var event_1 = require("./controllers/event");
+var activity_1 = require("./controllers/activity");
 var user_1 = require("./controllers/user");
 var citizen_1 = require("./controllers/citizen");
 var middlewares_1 = require("./middlewares");
@@ -13,6 +14,7 @@ function setRoutes(app) {
     var eventCtrl = new event_1.default();
     var userCtrl = new user_1.default();
     var citizenCtrl = new citizen_1.default();
+    var activityCtrl = new activity_1.default();
     var middleWare = new middlewares_1.default();
     router.route('/user/:id').put(middleWare.hash);
 
@@ -27,6 +29,15 @@ function setRoutes(app) {
     router.route('/event/insert/:id').post(eventCtrl.insert);
     router.route('/event/:id').delete(eventCtrl.delete);
     router.route('/events/confirmpay/:id').put(eventCtrl.confirmPay);
+
+    // activities
+    router.route('/activities').get(activityCtrl.getAll);
+    router.route('/activities/count').get(activityCtrl.count);
+    router.route('/activity').post(activityCtrl.insert);
+    router.route('/activity/:id').get(activityCtrl.get);
+    router.route('/activity/:id').put(activityCtrl.update);
+    router.route('/activity/insert/:id').post(activityCtrl.insert);
+    router.route('/activity/:id').delete(activityCtrl.delete);
 
     // Users
     router.route('/login').post(userCtrl.login);

@@ -26,12 +26,15 @@ Object.defineProperty(exports, "__esModule", {
 var jwt = require("jsonwebtoken");
 var user_1 = require("../models/user");
 var base_1 = require("./base");
+var event_1 = require("../models/event");
 var UserCtrl = /** @class */ (function (_super) {
     __extends(UserCtrl, _super);
 
     function UserCtrl() {
 
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.model = user_1.default;
+        _this.eventModel = event_1.default;
         _this.model = user_1.default;
         _this.login = function (req, res) {
             _this.model.findOne({
@@ -60,7 +63,7 @@ var UserCtrl = /** @class */ (function (_super) {
                                 email: user.email,
                                 userType: user.userType,
                                 contact_num: user.contact_num,
-                                password: user.password,                                
+                                password: user.password,
                             }
                         });
                     }
@@ -73,19 +76,20 @@ var UserCtrl = /** @class */ (function (_super) {
 
         _this.get = function (req, res) {
             _this.model.findOne({ _id: req.params.id }).
-            populate({
-                path: 'events',
-                model: 'event'
-            }).
-            exec(function (err, docs) {
-                if (!docs) {
-                    return res.status(500).json('User Not Found');
-                }
-                else{
-                res.status(200).send(docs)
-            }
-            });
-        };    
+                populate({
+                    path: 'events',
+                    model: 'event'
+                }).
+                exec(function (err, docs) {
+                    if (!docs) {
+                        return res.status(500).json('User Not Found');
+                    }
+                    else {
+                        res.status(200).send(docs)
+                    }
+                });
+           
+        };
 
         _this.register = function (req, res) {
             let newUser = new User({
@@ -99,19 +103,19 @@ var UserCtrl = /** @class */ (function (_super) {
                 contact_num: req.body.contact_num,
                 password: req.body.password
             });
-        user.addUser(newUser, (err, user)=>{
-                if(err){
-                        res.status(400).json(
-                            {
+            user.addUser(newUser, (err, user) => {
+                if (err) {
+                    res.status(400).json(
+                        {
                             success: false, msg: 'failed to register user'
-                            });
-                        }
-                else{
+                        });
+                }
+                else {
                     res.status(200).json(
                         {
                             success: true, msg: 'User Registered'
                         });
-                    }
+                }
             });
         };
         return _this;
