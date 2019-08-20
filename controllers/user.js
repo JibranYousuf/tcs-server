@@ -41,7 +41,11 @@ var UserCtrl = /** @class */ (function (_super) {
                 email: req.body.email
             }, function (err, user) {
                 if (!user) {
-                    return res.status(401).json({msg: 'User Not Found', status: false});
+                    return res.status(200).json({
+                        success: false,
+                        msg: 'User Not Found', 
+                        status: false}
+                        );
                 }
                 user.comparePassword(req.body.password, function (error, isMatch) {
                     if (err) throw err;
@@ -56,7 +60,11 @@ var UserCtrl = /** @class */ (function (_super) {
                         });
                     }
                     else {
-                        return res.status(401).json({msg: 'wrong password', status: false});
+                        return res.status(200).json({
+                            success: false,
+                            msg: 'wrong password',
+                            status: false}
+                            );
                     }
                 });
             });
