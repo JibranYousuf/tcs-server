@@ -78,6 +78,22 @@ var eventCtrl = /** @class */ (function (_super) {
             });
         };    
 
+        _this.getAll = function (req, res) {
+            _this.model.find({}).
+            populate({
+                path: 'activities',
+                model: 'activity'
+            }).
+            exec(function (err, docs) {
+                if (!docs) {
+                    return res.status(500).json('Event Not Found');
+                }
+                else{
+                res.status(200).send(docs)
+            }
+            });
+        }; 
+
         _this.confirmPay = function (req, res) {
             _this.model.update({
                 _id: req.params.id
