@@ -27,6 +27,7 @@ Object.defineProperty(exports, "__esModule", {
 var base_1 = require("./base");
 var activity_1 = require("../models/activity");
 var event_1 = require("../models/event");
+var user_1 = require("../models/user");
 var activityCtrl = /** @class */ (function (_super) {
     __extends(activityCtrl, _super);
 
@@ -35,9 +36,10 @@ var activityCtrl = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.model = activity_1.default;
         _this.eventModel = event_1.default;
+        _this.userModel = user_1.default;
 
 
-        _this.insert = function (req, res) {
+        _this.insertInEvent = function (req, res) {
             var obj = new _this.model(req.body);
             obj.save(function (err, item) {
                 // 11000 is the code for duplicate key error
@@ -61,6 +63,32 @@ var activityCtrl = /** @class */ (function (_super) {
                     });
             });
         }
+
+        _this.insertInUser = function (req, res) {
+            var obj = new _this.model(req.body);
+            obj.save(function (err, item) {
+                // 11000 is the code for duplicate key error
+                if (err && err.code === 11000) {
+                    res.sendStatus(400);
+                }
+                if (err) {
+                    return console.error(err);
+                }
+                _this.userModel.update({
+                    _id: req.params.id
+                }, {
+                        $push: {
+                            activities: item._id
+                        }
+                    }, function (err) {
+                        if (err) {
+                            res.sendStatus(400)
+                        }
+                        res.sendStatus(200);
+                    });
+            });
+        }
+
         return _this;
     }
 

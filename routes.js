@@ -36,7 +36,8 @@ function setRoutes(app) {
     router.route('/activity').post(activityCtrl.insert);
     router.route('/activity/:id').get(activityCtrl.get);
     router.route('/activity/:id').put(activityCtrl.update);
-    router.route('/activity/insert/:id').post(activityCtrl.insert);
+    router.route('/activity/insertInEvent/:id').post(activityCtrl.insertInEvent);
+    router.route('/activity/insertInUser/:id').post(activityCtrl.insertInUser);
     router.route('/activity/:id').delete(activityCtrl.delete);
 
     // Users

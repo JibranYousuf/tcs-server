@@ -78,7 +78,15 @@ var UserCtrl = /** @class */ (function (_super) {
             _this.model.findOne({ _id: req.params.id }).
                 populate({
                     path: 'events',
-                    model: 'event'
+                    model: 'event',
+                    populate : {
+                        path: 'activities',
+                        model: 'activity',
+                    }
+                }).
+                populate({
+                    path: 'activities',
+                    model: 'activity',
                 }).
                 exec(function (err, docs) {
                     if (!docs) {

@@ -36,6 +36,7 @@ var userSchema = new mongoose.Schema({
   password: {
     type: String,
   },
+  activities: [{ type: Schema.Types.ObjectId, ref: 'activity' }],
   events: [{ type: Schema.Types.ObjectId, ref: 'event' }],
   hours: {
     type: Number,
