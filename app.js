@@ -10,6 +10,20 @@ var path = require("path");
 var routes_1 = require("./routes");
 var app = express();
 
+const server = require("http").createServer(app);
+const io = require("socket.io").listen(server);
+const portChat = 3001
+
+io.on("connection", socket => {
+  console.log("a user is connected");
+  socket.on("message", msg => {
+    console.log(msg);
+    io.emit("message", msg);
+  });
+});
+
+server.listen(portChat, () => console.log("server running on port:" + portChat));
+
 exports.app = app;
 dotenv.load({
     path: '.env'
