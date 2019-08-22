@@ -42,6 +42,9 @@ var userSchema = new mongoose.Schema({
   hours: {
     type: Number,
     default: 20
+  },
+  left_hours: {
+    type: Number
   }
 });
 // Before saving the user, hash the password
