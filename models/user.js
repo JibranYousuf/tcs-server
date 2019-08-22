@@ -26,6 +26,7 @@ var userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
+    unique: true
   },
   contact_num: {
     type: String,
