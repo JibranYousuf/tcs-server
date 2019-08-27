@@ -6,7 +6,8 @@ var mongoose = require("mongoose");
 var chatSchema = new mongoose.Schema({
   msg: String,
   name: String,
-  id: String
+  id: String,
+  timestamp: String
 });
 var chat = mongoose.model('chat', chatSchema);
 exports.default = chat;
