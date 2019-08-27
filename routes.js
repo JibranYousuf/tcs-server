@@ -6,6 +6,7 @@ var activity_1 = require("./controllers/activity");
 var user_1 = require("./controllers/user");
 var citizen_1 = require("./controllers/citizen");
 var middlewares_1 = require("./middlewares");
+var chat_1 = require('./controllers/chat')
 
 var path = require('path');
 
@@ -16,6 +17,7 @@ function setRoutes(app) {
     var citizenCtrl = new citizen_1.default();
     var activityCtrl = new activity_1.default();
     var middleWare = new middlewares_1.default();
+    var chatCtrl = new chat_1.default();
     router.route('/user/:id').put(middleWare.hash);
 
 
@@ -39,6 +41,15 @@ function setRoutes(app) {
     router.route('/activity/insertInEvent/:id').post(activityCtrl.insertInEvent);
     router.route('/activity/insertInUser/:id').post(activityCtrl.insertInUser);
     router.route('/activity/:id').delete(activityCtrl.delete);
+
+    // chat
+    router.route('/chats').get(chatCtrl.getAll);
+    router.route('/chats/count').get(chatCtrl.count);
+    router.route('/chat').post(chatCtrl.insert);
+    router.route('/chat/:id').get(chatCtrl.get);
+    router.route('/chat/:id').put(chatCtrl.update);
+    router.route('/chat/insert/:id').post(chatCtrl.insert);
+    router.route('/chat/:id').delete(chatCtrl.delete);
 
     // Users
     router.route('/login').post(userCtrl.login);
