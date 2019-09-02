@@ -46,6 +46,9 @@ var userSchema = new mongoose.Schema({
   left_hours: {
     type: Number,
     default: 0
+  },
+  device_token:{
+    type: String
   }
 });
 // Before saving the user, hash the password
