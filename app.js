@@ -9,32 +9,6 @@ var mongoose = require("mongoose");
 var path = require("path");
 var routes_1 = require("./routes");
 var app = express();
-// const server = require("http").createServer(app);
-
-
-// const http = require('http').Server(app);
-// const io = require("socket.io")(http);
-// const port = process.env.PORT || 3000
-
-// io.on("connection", socket => {
-//     console.log("a user connected :D");
-//     socket.on("message", msg => {
-//         //Write Your Code Blow to Save a message in Database.
-//         //Blow is the Data As Message Received 
-//         //msg = { 
-//         // 	msg: 'user Input message',
-//         // 	name: 'User"s First Name',
-//         // 	id: 1
-//         //}
-//       console.log(msg);
-//       io.emit("message", msg);
-//     });
-//   });
-  
-//   //For Development Un Comment blow Code.
-//   server.listen(process.env.PORT, () => console.log("server running on port:" + process.env.PORT));
-
-// app.listen(port, () => console.log("server running on port:" + port));
 
 exports.app = app;
 dotenv.load({
