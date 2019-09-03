@@ -9,7 +9,8 @@ var activitySchema = new mongoose.Schema({
   activity_status: Boolean,
   activity_date: {
     type: Date
-  }
+  },
+  user_id: String
 });
 var activity = mongoose.model('activity', activitySchema);
 exports.default = activity;
