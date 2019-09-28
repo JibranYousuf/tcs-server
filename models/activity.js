@@ -7,7 +7,8 @@ var activitySchema = new mongoose.Schema({
   activity_name: String,
   activity_duration: String,
   activity_status: Boolean,
-  reminderSent:Boolean,
+  emailReminderSent:Boolean,
+  notificationReminderSent:Boolean,
   activity_date: {
     type: Date
   },
